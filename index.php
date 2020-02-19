@@ -45,6 +45,11 @@ case "login":
 case "logout":
     include_once "controllers/security/logout.control.php";
     die();
+
+//*NUEVA URL  
+case "ficha": //*Nombre de la URL en minuscula, sin espacios ni caracteres especiales
+    include_once "controllers/ficha.control.php"; //*Con .control se sabe que se esta trabajando en el control de la ficha. NOMENCLATURA
+    die(); //*Muere el proceso. Evita que llegue al ultimo punto de ERROR "La pagina no esta disponible"
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
