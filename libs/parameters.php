@@ -13,10 +13,10 @@
  * @link http://url.com
  */
 $server = "127.0.0.1";
-$user = "demouser";
-$pswd = "carm3l1t4s";
-$database = "demoalgorith";
-$port = "3306";
+$user = "dynauser";
+$pswd = "fr4nc1scanus";
+$database = "dynapolls";
+$port = "3306"; 
 
 $emailHost = 'email-smtp.us-west-2.amazonaws.com';
 $smtpUser = 'amazonwebuserkey';
