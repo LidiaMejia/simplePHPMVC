@@ -54,6 +54,10 @@ case "ficha": //*Nombre de la URL en minuscula, sin espacios ni caracteres espec
 case "categorias":
     include_once "controllers/mantenimientos/categorias.control.php";
     die();
+
+case "colores":
+    include_once "controllers/mantenimientos/colores.control.php";
+    die();
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
