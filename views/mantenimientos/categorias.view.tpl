@@ -8,7 +8,7 @@
             <thead>
                 <tr>
                     <th>Codigo</th>
-                    <th>Categorias</th>
+                    <th>Categoria</th>
                     <th>Estado</th>
                     <th> <button>Add New</button> </th>
                 </tr>

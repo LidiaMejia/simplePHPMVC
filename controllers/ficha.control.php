@@ -15,7 +15,7 @@
     $arrViewData['cuenta'] =  "1502199600657";
     $arrViewData['email'] =  "lidiamejia29@yahoo.com";  
 
-    //*AQUI SE RENDERIZA LA VISTA CON LOS DATOS
+    //*AQUI SE RENDERIZA LA VISTA CON LOS DATOS. SE MANDA LA URL
     renderizar("ficha", $arrViewData);
   }
 
