@@ -12,18 +12,19 @@
  *
  * @link http://url.com
  */
-require_once "libs/parameters.php";
+require_once "libs/parameters.php"; //*Info de user, BDD y psw
 
 
-$conexion = new mysqli(
+$conexion = new mysqli( //*Libreria de MySQL SIEMPRE DEBE SER CON i al final porque esta vigente aun. Establece la conexion y se guarda como obj en $conexion
     $server, $user, $pswd, $database, $port
 );
 
-if ($conexion->connect_errno ) {
-    die($conexion->connect_error);
+//* -> Usar un metodo de un objeto (Puntero)
+if ($conexion->connect_errno ) { //*Si el numero de error es 0 la conexion es exitosa
+    die($conexion->connect_error); //*EN DESARROLLO se mata la conexion y devuelve el msj de error que hubo
 }
 
-$conexion->set_charset("utf8");
+$conexion->set_charset("utf8"); //*Definir el tipo de codificacion
 /**
  * Obtener Registros
  *
@@ -31,8 +32,10 @@ $conexion->set_charset("utf8");
  * @param object $conexion Objecto de Conexión por Referencia
  * 
  * @return array
- */
-function obtenerRegistros($sqlstr, &$conexion = null )
+ */ 
+
+ //*& puntero hacia el valor del objeto, No es la copia del objeto. Por referencia & y por valor
+function obtenerRegistros($sqlstr, &$conexion = null ) //*Query, conexion. //*Ejecuta querys de tipo select. null porque puede ser una emulacion de BDD para pruebas unitarias
 {
     if (!$conexion) {
         global $conexion;
