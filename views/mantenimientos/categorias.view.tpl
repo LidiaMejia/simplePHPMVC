@@ -10,7 +10,7 @@
                     <th>Codigo</th>
                     <th>Categoria</th>
                     <th>Estado</th>
-                    <th> <button>Add New</button> </th>
+                    <th> <button id="botAddNew">Add New</button> </th>
                 </tr>
             </thead>
 
@@ -31,3 +31,19 @@
         </table>
     </main>
 </section>
+
+<!-- QUE CUANDO LE DE CLIC AL BOTON "Add New" LO REDIRIGA A LA PAGINA DE CREACION DE UNA NUEVA CATEGORIA -->
+<script>
+
+ var botAddNew = document.getElementById("botAddNew");
+
+ botAddNew.addEventListener("click", function(e)
+ {
+    e.preventDefault();
+    e.stopPropagation();
+
+    window.location.assign("index.php?page=categoria");
+ }); 
+
+</script>
+
