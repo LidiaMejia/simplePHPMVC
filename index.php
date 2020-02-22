@@ -59,6 +59,10 @@ case "colores":
     include_once "controllers/mantenimientos/colores.control.php";
     die();
 
+case "color":
+    include_once "controllers/mantenimientos/color.control.php";
+    die(); 
+
 //*Para agregar una nueva categoria
  case "categoria":
     include_once "controllers/mantenimientos/categoria.control.php";

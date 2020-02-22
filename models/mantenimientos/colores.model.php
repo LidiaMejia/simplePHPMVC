@@ -6,17 +6,28 @@
  * @return array
  */
 
-require_once "libs/dao.php";
+require_once "libs/dao.php"; 
 
 function obtenerTodosColores()
 {
-    $arrColores = array();
-    $sqlstr = "SELECT * FROM colores;";
+    $arrColores = array(); 
+    $sqlSelect = "SELECT * FROM colores;";
 
-    $arrColores = obtenerRegistros($sqlstr);
+    $arrColores = obtenerRegistros($sqlSelect); 
 
     return $arrColores;
 }
 
+
+//INSERT NUEVO COLOR
+function insertColor($colorhxd, $colordsc, $colorobs)
+{
+    $sqlInsert = "INSERT INTO colores (colorhxd, colordsc, colorobs) VALUES ('%s', '%s', '%s');";
+    $isOK = ejecutarNonQuery(
+        sprintf($sqlInsert, $colorhxd, $colordsc, $colorobs) 
+    );
+
+    return getLastInserId();
+}
 
 ?>

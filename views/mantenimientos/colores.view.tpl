@@ -8,10 +8,10 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Hexadecimal</th>
+                    <th>Hexadecimal</th> 
                     <th>Descripción</th>
                     <th>Lugar Sugerido</th>
-                    <th> <button>Añadir</button> </th>
+                    <th> <button id="botAdd">Añadir</button> </th>
                 </tr>
             </thead>
 
@@ -33,3 +33,15 @@
         </table>
     </main>
 </section>
+
+<script>
+    var botAdd = document.getElementById("botAdd"); 
+
+    botAdd.addEventListener("click", function(e)
+    {
+        e.preventDefault();
+        e.stopPropagation();
+
+        window.location.assign("index.php?page=color");
+    });
+</script>
