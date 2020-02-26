@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h1>Trabajando con Insert</h1>
+        <h1>{{modedsc}}</h1>
     </header>
 
     <main>
@@ -19,6 +19,7 @@
             <fieldset>
                 <label>Estado: &nbsp;</label>
                 <select name="ctgest">
+                    <!-- Los valores {{ctgEstACTTrue}}y {{ctgEstINATrue}} son para saber si estan seleccionados o no segun la BDD -->
                     <option value="ACT" {{ctgEstACTTrue}}>Activo</option> 
                     <option value="INA" {{ctgEstINATrue}}>Inactivo</option>
                 </select>
@@ -26,6 +27,7 @@
 
             <fieldset>
                 <button type="submit" name="btnConfirmar">Guardar</button>
+                &nbsp;
                 &nbsp;
                 <button type="submit" name="btnCancelar" id="botCancel">Cancelar</button> 
             </fieldset>
@@ -36,6 +38,9 @@
 <!-- QUE CUANDO LE DE CLIC A CANCELAR LE DEVUELVA A LAS CATEGORIAS -->
 <script>
 
+/* SOLO COMENTAR DENTRO DEL SCRIPT CON MULTILINEA, SINO NO FUNCIONA!!!!!!!!!!!!!!!!!! */
+
+
 var botCancel = document.getElementById("botCancel"); 
 
 botCancel.addEventListener("click", function(e)
@@ -43,7 +48,7 @@ botCancel.addEventListener("click", function(e)
     e.preventDefault();
     e.stopPropagation();
 
-    window.location.assign("index.php?page=categorias");
+    window.location.assign("index.php?page=categorias"); 
 });
 
 </script>

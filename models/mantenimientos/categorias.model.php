@@ -30,6 +30,14 @@ function guardarNuevaCategoria($ctgdsc, $ctgest)
     return getLastInserId(); //Retorna el ultimo Id Autonumerico que se creo
 }
 
-//No se llama porque es de consumo no de accion. SE LLAMA EN EL CONTROLADOR
+
+//Funcion para obtener los datos de un regustro especifico
+function obtenerCategoriaPorCodigo($ctgcod)
+{
+    $sqlSelect = "SELECT * FROM categorias WHERE ctgcod = %d;";
+    obtenerUnRegistro(
+        sprintf($sqlSelect, $ctgcod)
+    );
+}
 
 ?>
