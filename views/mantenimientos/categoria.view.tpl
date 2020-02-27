@@ -1,14 +1,22 @@
 <section>
     <header>
-        <h1>{{modedsc}}</h1>
+        <h1>{{modedsc}}</h1> 
     </header>
 
     <main>
-        <form action="index.php?page=categoria" method="post"> <!-- action desde el index de la URL -->
+        <form action="index.php?page=categoria&mode={{mode}}&ctgcod={{ctgcod}}" method="post"> <!-- action desde el index de la URL -->
             <!-- Se toman los datos a llenar respetando el tamanio del dato en la base. COMO NAME LOS MISMOS NOMBRES DE LA BASE -->
+
+            <!-- ESTO PARA QUE LOS DATOS CON disabled readonly SE ENVIEN EN EL POST O GET OCULTOS, PORQUE LOS disabled readonly NO SE MANDAN. 
+                 SE LE PONE NOMBRE dummy a la que tiene el disabled o readonly porque ese no se ocupa.
+                 
+                 Se manda tambien el mode porque pertenece a la URL del action del form. -->
+            <input type="hidden" name="ctgcod" value="{{ctgcod}}"/>
+            <input type="hidden" name="mode" value="{{mode}}"/> 
+
             <fieldset>
                 <label>Codigo: &nbsp;</label>
-                <input type="text" name="ctgcod" value="{{ctgcod}}" placeholder="Codigo"/>
+                <input type="text" name="ctgcoddummy" value="{{ctgcod}}" placeholder="Codigo" disabled readonly/> <!-- disabled readonly para que no se pueda modificar -->
             </fieldset>
 
             <fieldset>

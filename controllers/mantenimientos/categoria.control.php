@@ -28,7 +28,6 @@ function run()
     $arrViewData['ctgest'] = 'ACT';
     $arrViewData['ctgEstACTTrue'] = '';
     $arrViewData['ctgEstINATrue'] = '';
-
     $arrViewData['mode'] = 'INS'; //Puede ser INS, UPD, DEL, DSP ---> CRUD //DEPENDE DE LO QUE SE QUIERA HACER CON EL FORM
 
 
@@ -39,11 +38,11 @@ function run()
         //Si existe el mode, si trae algo
         if(isset($_GET['mode']))
         {
-            //se extrae el codigo y se convierte a su tipo de dato. SOLO EL CODIGO PORQUE CON EL SE BUSCAN LOS DEMAS EN LA BDD
-            $arrViewData['ctgcod'] = intval($_GET['ctgcod']); 
-
             //se guarda la peticion que trae en el arreglo de datos a mostrar
             $arrViewData['mode'] = $_GET['mode']; 
+
+            //se extrae el codigo y se convierte a su tipo de dato. SOLO EL CODIGO PORQUE CON EL SE BUSCAN LOS DEMAS EN LA BDD
+            $arrViewData['ctgcod'] = intval($_GET['ctgcod']); 
         }
 
         //Si se escogio una categoria && el modo no es insertar (Porque si es Insertar, los textbox se tienen que mostrar vacios)
@@ -56,42 +55,50 @@ function run()
             mergeFullArrayTo($arrTempCategoria, $arrViewData); 
         }
 
-        // switch($arrViewData['mode'])
-        // {
-        //     case 'INS':
-        //     break;
-
-        //     case 'UPD':
-        //     break;
-
-        //     case 'DEL':
-        //     break;
-
-        //     case 'DSP':
-        //     break;
-        // }
-
     }  
 
-    // if($_SERVER["REQUEST_METHOD"] === "POST")
-    // {
-    //     //*********** EN EL CONTROLADOR SE TRABAJAN LOS POST ********************/
-    //     if(isset($_POST['btnConfirmar']))
-    //     {
-    //         //PROBAR SI SE ESTAN ENVIANDO LOS VALORES
-    //         //print_r($_POST);
-    //         //die();
+    if($_SERVER["REQUEST_METHOD"] === "POST")
+    {
+        //Se refresca cada dato con lo que viene en el POST
+        $arrViewData['ctgcod'] = intval($_POST['ctgcod']);
+        $arrViewData['ctgdsc'] = $_POST['ctgdsc'];
+        $arrViewData['ctgest'] = $_POST['ctgest'];
+        $arrViewData['mode'] = $_POST['mode']; 
 
-    //         guardarNuevaCategoria($_POST['ctgdsc'], $_POST['ctgest']);
-    //         redirectWithMessage("Guardado Satisfactoriamente", "index.php?page=categorias"); //Funcion por defecto para redirigir con un mensaje
-    //         die(); //terminar proceso
-    //     }
-    // }
+        //Se busca con que modo se esta trabajando y se buscan las funciones en el modelo
+        switch($arrViewData['mode']) 
+        {
+            case 'INS':
+                guardarNuevaCategoria($arrViewData['ctgdsc'], $arrViewData['ctgest']);
+                redirectWithMessage("Guardado Satisfactoriamente", "index.php?page=categorias"); //Funcion por defecto para redirigir con un mensaje
+                die(); //terminar proceso
+            //break; Aqui no se ocupa porque ya hay un die(); 
+
+            case 'UPD':
+                actualizarCategoria($arrViewData['ctgcod'], $arrViewData['ctgdsc'], $arrViewData['ctgest']);
+                redirectWithMessage("Actualizado Satisfactoriamente", "index.php?page=categorias");
+                die();
+
+            case 'DEL':
+                eliminarCategoria($arrViewData['ctgcod']);
+                redirectWithMessage("Eliminada Satisfactoriamente", "index.php?page=categorias");
+                die();
+
+            case 'DSP':
+                redirectToUrl("index.php?page=categorias");   
+            break;
+        }
+
+        //PROBAR SI SE ESTAN ENVIANDO LOS VALORES
+        //print_r($_POST);
+        //die();         
+    }
+
 
     //No importa si es GET o POST siempre va a buscar el titulo para ponerlo
     $arrViewData['modedsc'] = sprintf($arrModeDsc[$arrViewData['mode']], $arrViewData['ctgcod'], $arrViewData['ctgdsc']);
 
-    //Cual esta seleccionada en el Combobox Estado
+    //Cual esta seleccionada en el Combobox Estado segun la BDD
     $arrViewData['ctgEstACTTrue'] = ($arrViewData['ctgest'] == 'ACT')? "selected": "";
     $arrViewData['ctgEstINATrue'] = ($arrViewData['ctgest'] == 'INA')? "selected": "";
 
