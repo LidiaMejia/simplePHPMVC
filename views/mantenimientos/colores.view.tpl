@@ -11,6 +11,7 @@
                     <th>Hexadecimal</th> 
                     <th>Descripción</th>
                     <th>Lugar Sugerido</th>
+                    <th>Estado</th>
                     <th> <button id="botAdd">Añadir</button> </th>
                 </tr>
             </thead>
@@ -22,10 +23,11 @@
                     <td>{{colorhxd}}</td>
                     <td>{{colordsc}}</td>
                     <td>{{colorobs}}</td>
+                    <td>{{colorest}}</td>
                     <td>
-                        <button>Editar</button>
-                        <button>Borrar</button>
-                        <button>Ver</button>
+                        <a href="index.php?page=color&mode=UPD&colorcod={{colorcod}}">Editar</a> &nbsp;
+                        <a href="index.php?page=color&mode=DSP&colorcod={{colorcod}}">Ver</a> &nbsp;
+                        <a href="index.php?page=color&mode=DEL&colorcod={{colorcod}}">Eliminar</a>
                     </td>
                 </tr>
                 {{endfor colores}} 
@@ -42,6 +44,6 @@
         e.preventDefault();
         e.stopPropagation();
 
-        window.location.assign("index.php?page=color");
+        window.location.assign("index.php?page=color&mode=INS&colorcod=0");
     });
 </script>

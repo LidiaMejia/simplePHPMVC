@@ -1,13 +1,17 @@
 <section>
     <header>
-        <h1>Trabajando con Insert - Nuevo Color</h1>
+        <h1>{{modedsc}}</h1>
     </header>
 
     <main>
-        <form action="index.php?page=color" method="post">
+        <form action="index.php?page=color&mode={{mode}}&colorcod={{colorcod}}" method="post">
+
+            <input type="hidden" name="colorcod" value="{{colorcod}}"/>
+            <input type="hidden" name="mode" value="{{mode}}"/>
+
             <fieldset>
                 <label for="colorcod">Código: &nbsp;</label>
-                <input type="text" name="colorcod" value="{{colorcod}}" placeholder="Codigo"/>
+                <input type="text" name="colorcoddummy" value="{{colorcod}}" placeholder="Codigo" disabled readonly/>
             </fieldset>
 
             <fieldset>
@@ -23,6 +27,14 @@
             <fieldset>
                 <label for="colorobs">Lugar Sugerido de Aplicación: &nbsp;</label>
                 <input type="text" name="colorobs" value="{{colorobs}}" maxlength="128" placeholder="Pared de la Casa"/>
+            </fieldset>
+
+            <fieldset>
+                <label for="colorest">Estado: &nbsp;</label>
+                <select name="colorest">
+                    <option value="ACT" {{colorEstACTTrue}}>Activo</option>
+                    <option value="INA" {{colorEstINATrue}}>Inactivo</option> 
+                </select>
             </fieldset>
 
             <fieldset>

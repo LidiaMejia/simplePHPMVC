@@ -5,8 +5,13 @@ CREATE TABLE `dynapolls`.`colores` (
   `colorobs` VARCHAR(128) NOT NULL,
   PRIMARY KEY (`colorcod`));
 
-INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`) VALUES ('#FFFFFF', 'Blanco', 'Paredes de un Hospital Psiquiátrico');
-INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`) VALUES ('#000000', 'Negro', 'Decorativos en paredes de otro color');
-INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`) VALUES ('#FF7F50', 'Coral', 'Paredes de la sala');
-INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`) VALUES ('#191970', 'Azul Medianoche', 'Paredes del estudio');
-INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`) VALUES ('#A0522D', 'Siena', 'Exterior de una casa');
+ALTER TABLE `dynapolls`.`colores`
+ADD COLUMN `colorest` CHAR
+(3) NOT NULL DEFAULT 'ACT' AFTER `colorobs`; 
+
+INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`, `colorest`) VALUES ('#FFFFFF', 'Blanco', 'Paredes de un Hospital Psiquiátrico', 'ACT');
+INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`, `colorest`) VALUES ('#000000', 'Negro', 'Decorativos en paredes de otro color', 'ACT');
+INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`, `colorest`) VALUES ('#FF7F50', 'Coral', 'Paredes de la sala', 'ACT');
+INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`, `colorest`) VALUES ('#191970', 'Azul Medianoche', 'Paredes del estudio', 'ACT');
+INSERT INTO `dynapolls`.`colores` (`colorhxd`, `colordsc`, `colorobs`, `colorest`) VALUES ('#A0522D', 'Siena', 'Exterior de una casa', 'ACT');
+
