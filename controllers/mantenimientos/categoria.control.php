@@ -59,34 +59,38 @@ function run()
 
     if($_SERVER["REQUEST_METHOD"] === "POST")
     {
-        //Se refresca cada dato con lo que viene en el POST
-        $arrViewData['ctgcod'] = intval($_POST['ctgcod']);
-        $arrViewData['ctgdsc'] = $_POST['ctgdsc'];
-        $arrViewData['ctgest'] = $_POST['ctgest'];
-        $arrViewData['mode'] = $_POST['mode']; 
-
-        //Se busca con que modo se esta trabajando y se buscan las funciones en el modelo
-        switch($arrViewData['mode']) 
+        //Si existe el token && Existe el token en la sesion && ambos son iguales
+        if( isset($_POST['token']) && isset($_SESSION['token_categoria']) && $_POST['token'] === $_SESSION['token_categoria'] )
         {
-            case 'INS':
-                guardarNuevaCategoria($arrViewData['ctgdsc'], $arrViewData['ctgest']);
-                redirectWithMessage("Guardado Satisfactoriamente", "index.php?page=categorias"); //Funcion por defecto para redirigir con un mensaje
-                die(); //terminar proceso
-            //break; Aqui no se ocupa porque ya hay un die(); 
+            //Se refresca cada dato con lo que viene en el POST
+            $arrViewData['ctgcod'] = intval($_POST['ctgcod']); 
+            $arrViewData['ctgdsc'] = $_POST['ctgdsc'];
+            $arrViewData['ctgest'] = $_POST['ctgest'];
+            $arrViewData['mode'] = $_POST['mode'];  
 
-            case 'UPD':
-                actualizarCategoria($arrViewData['ctgcod'], $arrViewData['ctgdsc'], $arrViewData['ctgest']);
-                redirectWithMessage("Actualizado Satisfactoriamente", "index.php?page=categorias");
-                die();
+            //Se busca con que modo se esta trabajando y se buscan las funciones en el modelo
+            switch($arrViewData['mode']) 
+            {
+                case 'INS':
+                    guardarNuevaCategoria($arrViewData['ctgdsc'], $arrViewData['ctgest']);
+                    redirectWithMessage("Guardado Satisfactoriamente", "index.php?page=categorias"); //Funcion por defecto para redirigir con un mensaje
+                    die(); //terminar proceso
+                //break; Aqui no se ocupa porque ya hay un die(); 
 
-            case 'DEL':
-                eliminarCategoria($arrViewData['ctgcod']);
-                redirectWithMessage("Eliminada Satisfactoriamente", "index.php?page=categorias");
-                die();
+                case 'UPD':
+                    actualizarCategoria($arrViewData['ctgcod'], $arrViewData['ctgdsc'], $arrViewData['ctgest']);
+                    redirectWithMessage("Actualizado Satisfactoriamente", "index.php?page=categorias");
+                    die();
 
-            case 'DSP':
-                redirectToUrl("index.php?page=categorias");   
-            break;
+                case 'DEL':
+                    eliminarCategoria($arrViewData['ctgcod']);
+                    redirectWithMessage("Eliminada Satisfactoriamente", "index.php?page=categorias");
+                    die();
+            }
+        }
+        else
+        {
+            error_log("Intento de XRS Attack ". $_SERVER['REMOTE_ADDR']); //Concatenar el Host que hizo la solicitud
         }
 
         //PROBAR SI SE ESTAN ENVIANDO LOS VALORES
@@ -95,12 +99,47 @@ function run()
     }
 
 
+
+    ///////////////////////////// VARIABLES GLOBALES - No importa si es GET o POST ////////////////////////////////////////////////
+
+    /******************    EVITAR UN ATAQUE DE USURPACION DE FORMULARIOS O FISHING   ***********************/
+
+    //Al entrar con GET en la URL crea el token
+
+    //md5() Devuelve un hash binario en la sesion, es diferente cada vez // time() devuelve el numero de seg desde 1970 //Un numero random //una palabra random
+    $xrstoken = md5(time() . (random_int(0, 10000)) . "categ"); 
+
+    $_SESSION['token_categoria'] = $xrstoken;
+    $arrViewData['token'] = $xrstoken;
+
+    //Asi creamos un codigo unico para la transaccion de esa sesion
+
+    /*************************************************************************************************************/
+
+
     //No importa si es GET o POST siempre va a buscar el titulo para ponerlo
     $arrViewData['modedsc'] = sprintf($arrModeDsc[$arrViewData['mode']], $arrViewData['ctgcod'], $arrViewData['ctgdsc']);
 
     //Cual esta seleccionada en el Combobox Estado segun la BDD
     $arrViewData['ctgEstACTTrue'] = ($arrViewData['ctgest'] == 'ACT')? "selected": "";
     $arrViewData['ctgEstINATrue'] = ($arrViewData['ctgest'] == 'INA')? "selected": "";
+
+
+    //Para que cuando sea Display o Delete no se pueden modificar campos
+    $arrViewData['isReadOnly'] = true;
+
+    if($arrViewData['mode'] === 'INS' || $arrViewData['mode'] === 'UPD')
+    {
+        $arrViewData['isReadOnly'] = false;
+    }
+
+    //Para que el Boton guardar no se vea en DSP
+    $arrViewData['hasAction'] = true;
+
+    if($arrViewData['mode'] === 'DSP')
+    {
+        $arrViewData['hasAction'] = false;
+    }
 
     renderizar("mantenimientos/categoria", $arrViewData);
 }

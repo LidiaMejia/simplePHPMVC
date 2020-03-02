@@ -13,6 +13,7 @@
                  Se manda tambien el mode porque pertenece a la URL del action del form. -->
             <input type="hidden" name="ctgcod" value="{{ctgcod}}"/>
             <input type="hidden" name="mode" value="{{mode}}"/> 
+            <input type="hidden" name="token" value="{{token}}"/> <!-- Para esconder el token de sesion unico  -->
 
             <fieldset>
                 <label>Codigo: &nbsp;</label>
@@ -21,12 +22,12 @@
 
             <fieldset>
                 <label>Categoria: &nbsp;</label>
-                <input type="text" name="ctgdsc" value="{{ctgdsc}}" maxlength="70" placeholder="Descripcion de la Categoria"/>
+                <input type="text" name="ctgdsc" value="{{ctgdsc}}" maxlength="70" placeholder="Descripcion de la Categoria" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
             </fieldset>
 
             <fieldset>
                 <label>Estado: &nbsp;</label>
-                <select name="ctgest">
+                <select name="ctgest" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>
                     <!-- Los valores {{ctgEstACTTrue}}y {{ctgEstINATrue}} son para saber si estan seleccionados o no segun la BDD -->
                     <option value="ACT" {{ctgEstACTTrue}}>Activo</option> 
                     <option value="INA" {{ctgEstINATrue}}>Inactivo</option>
@@ -34,7 +35,7 @@
             </fieldset>
 
             <fieldset>
-                <button type="submit" name="btnConfirmar">Guardar</button>
+                {{if hasAction}} <button type="submit" name="btnConfirmar">Guardar</button> {{endif hasAction}} 
                 &nbsp;
                 &nbsp;
                 <button type="submit" name="btnCancelar" id="botCancel">Cancelar</button> 
