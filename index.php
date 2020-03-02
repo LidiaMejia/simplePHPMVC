@@ -66,7 +66,15 @@ case "color":
 //*Para agregar una nueva categoria
  case "categoria":
     include_once "controllers/mantenimientos/categoria.control.php";
-    die();   
+    die();
+    
+ case "libros":
+    include_once "controllers/mantenimientos/libros.control.php";
+    die();
+
+ case "libro":
+    include_once "controllers/mantenimientos/libro.control.php";
+    die();
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
