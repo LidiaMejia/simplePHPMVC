@@ -79,7 +79,7 @@ function run()
 
                 case 'DEL':
                     eliminarColor($arrViewData['colorcod']);
-                    redirectWithMessage("Color Eliminado Exitosamente", "index.php?page=color");  
+                    redirectWithMessage("Color Eliminado Exitosamente", "index.php?page=colores");   
                 break;
             }
         }
