@@ -8,6 +8,7 @@
 
             <input type="hidden" name="colorcod" value="{{colorcod}}"/>
             <input type="hidden" name="mode" value="{{mode}}"/>
+            <input type="hidden" name="token" value="{{token}}"/>
 
             <fieldset>
                 <label for="colorcod">Código: &nbsp;</label>
@@ -16,29 +17,29 @@
 
             <fieldset>
                 <label for="colorhxd">Código Hexadecimal: &nbsp;</label>
-                <input type="text" name="colorhxd" value="{{colorhxd}}" maxlength="7" placeholder="#FFFFFF"/>
+                <input type="text" name="colorhxd" value="{{colorhxd}}" maxlength="7" placeholder="#FFFFFF" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
             </fieldset>
 
             <fieldset>
                 <label for="colordsc">Descripción: &nbsp;</label> 
-                <input type="text" name="colordsc" value="{{colordsc}}" maxlength="70" placeholder="Blanco" />
+                <input type="text" name="colordsc" value="{{colordsc}}" maxlength="70" placeholder="Blanco" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
             </fieldset>
 
             <fieldset>
                 <label for="colorobs">Lugar Sugerido de Aplicación: &nbsp;</label>
-                <input type="text" name="colorobs" value="{{colorobs}}" maxlength="128" placeholder="Pared de la Casa"/>
+                <input type="text" name="colorobs" value="{{colorobs}}" maxlength="128" placeholder="Pared de la Casa" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
             </fieldset>
 
             <fieldset>
                 <label for="colorest">Estado: &nbsp;</label>
-                <select name="colorest">
+                <select name="colorest" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>
                     <option value="ACT" {{colorEstACTTrue}}>Activo</option>
                     <option value="INA" {{colorEstINATrue}}>Inactivo</option> 
                 </select>
             </fieldset>
 
             <fieldset>
-                <button type="submit" name="botGuardar">Guardar</button>
+                {{if hasAction}} <button type="submit" name="botGuardar">Guardar</button> {{endif hasAction}}
                 &nbsp; &nbsp;
                 <button type="submit" name="botCancelar">Cancelar</button>
             </fieldset>
