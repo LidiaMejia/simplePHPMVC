@@ -75,6 +75,10 @@ case "color":
  case "libro":
     include_once "controllers/mantenimientos/libro.control.php";
     die();
+
+ case "parqueos":
+    include_once "controllers/mantenimientos/parqueos.control.php";
+    die();   
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
