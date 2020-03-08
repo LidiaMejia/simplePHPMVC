@@ -51,10 +51,6 @@ case "ficha": //*Nombre de la URL en minuscula, sin espacios ni caracteres espec
     include_once "controllers/ficha.control.php"; //*Con .control se sabe que se esta trabajando en el control de la ficha. NOMENCLATURA
     die(); //*Muere el proceso. Evita que llegue al ultimo punto de ERROR "La pagina no esta disponible"
 
-case "categorias":
-    include_once "controllers/mantenimientos/categorias.control.php";
-    die();
-
 case "colores":
     include_once "controllers/mantenimientos/colores.control.php";
     die();
@@ -62,11 +58,6 @@ case "colores":
 case "color":
     include_once "controllers/mantenimientos/color.control.php";
     die(); 
-
-//*Para agregar una nueva categoria
- case "categoria":
-    include_once "controllers/mantenimientos/categoria.control.php";
-    die();
     
  case "libros":
     include_once "controllers/mantenimientos/libros.control.php";
@@ -78,7 +69,11 @@ case "color":
 
  case "parqueos":
     include_once "controllers/mantenimientos/parqueos.control.php";
-    die();   
+    die();
+    
+ case "parqueo":
+    include_once "controllers/mantenimientos/parqueo.control.php";
+    die();
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
@@ -130,6 +125,20 @@ case "programa":
       include_once "controllers/security/programa.control.php":
       mw_redirectToLogin($_SERVER["QUERY_STRING"]);
     die();
+
+case "categorias":
+    ($logged)?
+      include_once "controllers/mantenimientos/categorias.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
+
+//*Para agregar una nueva categoria
+case "categoria":
+    ($logged)?
+        include_once "controllers/mantenimientos/categoria.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+    die();
+
 }
 
 addToContext("pageRequest", $pageRequest);

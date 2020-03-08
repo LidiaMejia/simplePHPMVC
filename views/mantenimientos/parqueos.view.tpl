@@ -11,7 +11,7 @@
                     <th>Estado</th>
                     <th>Lote</th>
                     <th>Tipo</th>
-                    <th> <button id="AddNew">Nuevo</button> </th>
+                    <th> <button id="botAddNew">Nuevo</button> </th>
                 </tr>
             </thead>
 
@@ -33,3 +33,15 @@
         </table>
     </main>
 </section>
+
+<script>
+    var botAddNew = document.getElementById("botAddNew"); 
+
+    botAddNew.addEventListener("click", function(e)
+    {
+        e.preventDefault();
+        e.stopPropagation();
+
+        window.location.assign("index.php?page=parqueo&mode=INS&parqueoId=0");
+    });
+</script>
