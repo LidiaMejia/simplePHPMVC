@@ -75,6 +75,14 @@ case "color":
     include_once "controllers/mantenimientos/parqueo.control.php";
     die();
 
+ case "centroscostos":
+    include_once "controllers/mantenimientos/centroscostos.control.php";
+    die();
+
+ case "centrocostos":
+    include_once "controllers/mantenimientos/centrocostos.control.php";
+    die();
+
  //En la carpeta security para el registro de usuarios
  case "register":
     include_once "controllers/security/register.control.php";

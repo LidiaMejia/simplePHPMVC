@@ -35,8 +35,11 @@
     //GET (URL)
     if($_SERVER["REQUEST_METHOD"] === "GET")
     {
-        $arrViewData['mode'] = $_GET['mode'];
-        $arrViewData['parqueoId'] = $_GET['parqueoId'];
+        if(isset($_GET['mode']))
+        {
+            $arrViewData['mode'] = $_GET['mode']; 
+            $arrViewData['parqueoId'] = intval($_GET['parqueoId']);
+        }
 
         if($arrViewData['mode'] !== 'INS' && $arrViewData['parqueoId'] > 0)
         {
