@@ -74,6 +74,11 @@ case "color":
  case "parqueo":
     include_once "controllers/mantenimientos/parqueo.control.php";
     die();
+
+ //En la carpeta security para el registro de usuarios
+ case "register":
+    include_once "controllers/security/register.control.php";
+    die();
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
