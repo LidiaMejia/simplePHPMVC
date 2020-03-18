@@ -9,7 +9,7 @@
   }
 
   function isValidPassword($value){
-    return preg_match('/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%])[0-9A-Za-z!@#$%]{8,32}$/', $value) ;
+    return preg_match('/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.\-_*])[a-zA-Z0-9@#$%^&+=*.\-_]{8,32}$/', $value) ;
   }
 
   function isValidText($value){

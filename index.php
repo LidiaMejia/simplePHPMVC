@@ -152,6 +152,20 @@ case "categoria":
         mw_redirectToLogin($_SERVER["QUERY_STRING"]);
     die();
 
+ //*Seguridad
+ case "security":
+    ($logged)?
+      include_once "controllers/security/security.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
+ //*Mantenimientos
+ case "parametros":
+    ($logged)?
+      include_once "controllers/mantenimientos/mantenimientos.control.php":
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
 }
 
 addToContext("pageRequest", $pageRequest);
