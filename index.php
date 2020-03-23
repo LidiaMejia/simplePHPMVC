@@ -166,6 +166,19 @@ case "categoria":
       mw_redirectToLogin($_SERVER["QUERY_STRING"]);
  die();
 
+ //*Productos
+ case "productos":
+    ($logged)?
+        include "controllers/mantenimientos/productos.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
+ case "producto":
+    ($logged)?
+        include_once "controllers/mantenimientos/producto.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
 }
 
 addToContext("pageRequest", $pageRequest);
