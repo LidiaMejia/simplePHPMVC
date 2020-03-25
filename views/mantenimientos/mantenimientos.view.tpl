@@ -1,5 +1,5 @@
 <header>
-  <h1>Manteniminetos</h1>
+  <h1>Mantenimientos</h1>
 </header>
 
 <section class="row">

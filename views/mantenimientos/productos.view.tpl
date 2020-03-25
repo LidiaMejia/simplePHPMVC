@@ -1,52 +1,60 @@
 <section>
     <header>
-        <h1>Productos</h1>
+        <h1>Trabajar con Productos</h1>
     </header>
 
-    <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Descripción Comercial</th>
-                    <th>Descripción Corta</th>
-                    <th>Descripción Larga</th>
-                    <th>Código Interno</th>
-                    <th>Código de Barra</th>
-                    <th>Stock</th>
-                    <th>Tipo</th>
-                    <th>Precio</th>
-                    <th>URL Imagen</th>
-                    <th>URL Imagen Pequeña</th>
-                    <th>Estado</th>
-                    <th> <button id="botAddNew">Nuevo</button> </th>
-                </tr>
-            </thead>
+    <main class="row">
+        <div class="col-12 col-md-10 col-offset-1">
+            <table class="full-width">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Código Interno</th>
+                        <th>Código de Barra</th>
+                        <th>Stock</th>
+                        <th>Tipo</th>
+                        <th>Precio</th>
+                        <th class="center">Imagen</th>
+                        <th>Estado</th>
+                        <th> <a href="" id="botAddNew" class="btn depth-1 s-margin"><span class="ion-plus-circled"></span></a> </th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {{foreach productos}}
-                <tr>
-                    <td>{{codprd}}</td>
-                    <td>{{dscprd}}</td>
-                    <td>{{sdscprd}}</td>
-                    <td>{{ldscprd}}</td>
-                    <td>{{skuprd}}</td>
-                    <td>{{bcdprd}}</td>
-                    <td>{{stkprd}}</td>
-                    <td>{{typprd}}</td>
-                    <td>{{prcprd}}</td>
-                    <td>{{urlprd}}</td>
-                    <td>{{urlthbprd}}</td>
-                    <td>{{estprd}}</td>
-                    <td>
-                        <a href="index.php?page=producto&mode=UPD&codprd={{codprd}}">Editar</a> <br/>
-                        <a href="index.php?page=producto&mode=DSP&codprd={{codprd}}">Ver</a> <br/>
-                        <a href="index.php?page=producto&mode=DEL&codprd={{codprd}}">Eliminar</a>
-                    </td>
-                </tr>
-                {{endfor productos}}
-            </tbody>
-        </table>
+                <tbody class="zebra">
+                    {{foreach productos}}
+                    <tr>
+                        <td>{{codprd}}</td>
+                        <td>{{dscprd}}</td>
+                        <td>{{skuprd}}</td>
+                        <td>{{bcdprd}}</td>
+                        <td>{{stkprd}}</td>
+                        <td>{{typprd}}</td>
+                        <td>{{prcprd}}</td>
+
+                        <td>
+                            <!-- Si no hay imagen pequeña, se coloca el icono de agregar una a ese producto -->
+                            {{ifnot urlthbprd}}
+                                <a href="index.php?page=productoimg&codprd={{codprd}}" class="btn depth-1 s-margin"> <span class="ion-upload"></span> </a>
+                            {{endifnot urlthbprd}}
+
+                            <!-- Si ya hay una imagen pequeña para el producto, se muestra (se le da la url como source src en la img) y se le puede dar clic para modificarla -->
+                            {{if urlthbprd}}
+                                <a href="index.php?page=productoimg&codprd={{codprd}}" class="depth-1 s-margin"> <img src="{{urlthbprd}}" alt="{{codprd}} {{dscprd}}"/> </a>
+                            {{endif urlthbprd}}
+                        </td>
+
+                        <td>{{estprd}}</td>
+                        
+                        <td>
+                            <a href="index.php?page=producto&mode=UPD&codprd={{codprd}}" class="btn depth-1 s-margin"> <span class="ion-edit"></span> </a> <br/>
+                            <a href="index.php?page=producto&mode=DSP&codprd={{codprd}}" class="btn depth-1 s-margin"> <span class="ion-eye"></span> </a> <br/>
+                        </td>
+                    </tr>
+                    {{endfor productos}}
+                </tbody>
+            </table>
+        </div>
     </main>
 </section>
 

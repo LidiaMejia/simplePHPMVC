@@ -32,6 +32,15 @@
         );
     }
 
+    if (isAuthorized('productos', $usuario)) 
+    {
+        $arrMantenimientos[] = array(
+            "page" => "productos",
+            "pageDsc"=>"Productos",
+            "ionicon"=> "cube"
+        );
+    }
+
     $arrDataView["mantenimientos"] = $arrMantenimientos;
     
     renderizar("mantenimientos/mantenimientos", $arrDataView);

@@ -3,49 +3,31 @@
         <h1>{{modedsc}}</h1>
     </header>
 
-    <main>
-        <form action="index.php?page=producto&mode={{mode}}&codprd={{codprd}}" method="POST">
+    <br/>
+
+    <main class="row">
+        <form action="index.php?page=producto&mode={{mode}}&codprd={{codprd}}" method="POST"  class="col-12 col-md-8 col-offset-2">
             <input type="hidden" name="codprd" value="{{codprd}}"/>
             <input type="hidden" name="mode" value="{{mode}}"/>
             <input type="hidden" name="token" value="{{token}}"/>
 
             <fieldset>
-                <label>Código: &nbsp;</label>
+                <label class="col-12 col-sm-4 col-md-3">Código: &nbsp;</label>
                 <input type="text" name="dummy" value="{{codprd}}" placeholder="Código" disabled readonly/>
             </fieldset>
 
             <fieldset>
-                <label>Descripción Comercial: &nbsp;</label>
-                <input type="text" name="dscprd" value="{{dscprd}}" maxlength="70" placeholder="Yuquitas" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+                <label class="col-12 col-sm-4 col-md-3">Código Interno: &nbsp;</label>
+                <input type="text" name="skuprd" value="{{skuprd}}" maxlength=128 placeholder="SKU" {{if isReadOnly}} disabled readonly {{endif isReadOnly}} />
             </fieldset>
 
             <fieldset>
-                <label>Descripción Corta: &nbsp;</label>
-                <input type="text" name="sdscprd" value="{{sdscprd}}" maxlength="255" placeholder="Bolsa de churro Yuquitas" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+                <label class="col-12 col-sm-4 col-md-3">Código de Barra: &nbsp;</label>
+                <input type="text" name="bcdprd" value="{{bcdprd}}" maxlength="128" placeholder="Código de Barra" {{if isReadOnly}} disabled readonly {{endif isReadOnly}} />
             </fieldset>
 
             <fieldset>
-                <label>Descripción Larga: &nbsp;</label>
-                <input type="text" name="ldscprd" value="{{ldscprd}}" placeholder="Unidad de bolsa de churro Yuquitas de 10mg" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
-            </fieldset>
-
-            <fieldset>
-                <label>Código Interno: &nbsp;</label>
-                <input type="text" name="skuprd" value="{{skuprd}}" maxlength=128 placeholder="YUQ123" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
-            </fieldset>
-
-            <fieldset>
-                <label>Código de Barra: &nbsp;</label>
-                <input type="text" name="bcdprd" value="{{bcdprd}}" maxlength="128" placeholder="012345678901" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
-            </fieldset>
-
-            <fieldset>
-                <label>Stock: &nbsp;</label>
-                <input type="number" name="stkprd" value="{{stkprd}}" min="1" placeholder="50" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
-            </fieldset>
-
-            <fieldset>
-                <label>Tipo: &nbsp;</label>
+                <label class="col-12 col-sm-4 col-md-3">Tipo: &nbsp;</label>
                 <select name="typprd" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>
                     <option value="RTL" {{typeRTLTrue}}>Retail</option>
                     <option value="SRV" {{typeSRVTrue}}>Servicio</option>
@@ -54,22 +36,42 @@
             </fieldset>
 
             <fieldset>
-                <label>Precio: &nbsp;</label>
-                <input type="text" name="prcprd" value="{{prcprd}}" maxlength="15" placeholder="10.00" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+                <label class="col-12 col-sm-4 col-md-3">Descripción Comercial: &nbsp;</label>
+                <input type="text" name="dscprd" value="{{dscprd}}" maxlength="70" placeholder="Descripción Comercial" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
             </fieldset>
 
             <fieldset>
-                <label>URL imagen: &nbsp;</label>
-                <input type="text" name="urlprd" value="{{urlprd}}" maxlength="255" placeholder="urlImagen" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+                <label class="col-12 col-sm-4 col-md-3">Descripción Corta: &nbsp;</label>
+                <textarea name="sdscprd" maxlength="255" placeholder="Descripción Corta" class="col-12 col-sm-8 col-md-9" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>{{sdscprd}}</textarea>
             </fieldset>
 
             <fieldset>
-                <label>URL imagen pequeña: &nbsp;</label>
-                <input type="text" name="urlthbprd" value="{{urlthbprd}}" maxlength="255" placeholder="urlPeqImagen" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+                <label class="col-12 col-sm-4 col-md-3">Descripción Larga: &nbsp;</label>
+                <textarea name="ldscprd" maxlength="2048" rows="10" placeholder="Descripción Larga" class="col-12 col-sm-8 col-md-9" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>{{ldscprd}}</textarea>
+            </fieldset>
+
+            <fieldset>
+                <label class="col-12 col-sm-4 col-md-3">Stock: &nbsp;</label>
+                <input type="number" name="stkprd" value="{{stkprd}}" min="1" placeholder="Unidades en Inventario" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+            </fieldset>
+
+            <fieldset>
+                <label class="col-12 col-sm-4 col-md-3">Precio: &nbsp;</label>
+                <input type="text" name="prcprd" value="{{prcprd}}" maxlength="15" placeholder="Precio de Venta" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}/>
+            </fieldset>
+
+            <fieldset>
+                <label class="col-12 col-sm-4 col-md-3">URL imagen: &nbsp;</label>
+                <input type="text" name="urlprd" value="{{urlprd}}" maxlength="255" placeholder="Imagen de Portada" disabled readonly/>
+            </fieldset>
+
+            <fieldset>
+                <label class="col-12 col-sm-4 col-md-3">URL imagen pequeña: &nbsp;</label>
+                <input type="text" name="urlthbprd" value="{{urlthbprd}}" maxlength="255" placeholder="Imagen Catálogo" disabled readonly/>
             </fieldset>
             
             <fieldset>
-                <label>Estado: &nbsp;</label>
+                <label class="col-12 col-sm-4 col-md-3">Estado: &nbsp;</label>
                 <select name="estprd" {{if isReadOnly}} disabled readonly {{endif isReadOnly}}>
                     <option value="ACT" {{estACTTrue}}>Activo</option>
                     <option value="INA" {{estINATrue}}>Inactivo</option>
@@ -79,9 +81,9 @@
                 </select>
             </fieldset>
 
-            <fieldset>
-                {{if hasAction}} <button type="submit" name="botGuardar">Guardar</button> &nbsp; {{endif hasAction}}
-                <button type="submit" id="botCancelar">Cancelar</button>
+            <fieldset class="right">
+                {{if hasAction}} <button type="submit" name="botGuardar" class="m-padding btn-primary">Guardar</button> &nbsp; {{endif hasAction}}
+                <button type="submit" id="botCancelar" class="m-padding">Cancelar</button>
             </fieldset>
         </form>
     </main>

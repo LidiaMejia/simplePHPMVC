@@ -179,6 +179,13 @@ case "categoria":
         mw_redirectToLogin($_SERVER["QUERY_STRING"]);
  die();
 
+ //*Subir imagen para el producto
+ case "productoimg":
+    ($logged)?
+        include_once "controllers/mantenimientos/productoimg.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
 }
 
 addToContext("pageRequest", $pageRequest);

@@ -11,6 +11,13 @@ body, .menu, .contenido, .footer {
   box-sizing: border-box;
 }
 
+.center{
+  text-align: center;
+}
+
+.bold{
+  font-weight: bold;
+}
 
 .menu {
   position: fixed;
@@ -249,9 +256,10 @@ label {
 
 .btn {
   display: inline-block;
-  padding: 0.25em 0.5em;
+  /* padding: 0.25em 0.5em; */
   border-radius: 53px;
   color: #000;
+  text-decoration: none; 
 }
 
 .btn:hover {
@@ -577,4 +585,21 @@ select {
 
 input[type="number"], input[type="date"]{
   text-align: right;
+}
+
+.imgthumb{
+  display: block;
+  width: 100%;
+  max-width: 115px !important;
+  padding: 0.25em;
+}
+
+.card .center{
+  margin: 1px auto;
+}
+
+.imgPrd{
+  display: block;
+  width: 100%;
+  max-width: 480px !important;
 }
