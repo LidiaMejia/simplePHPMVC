@@ -25,6 +25,10 @@ if ($conexion->connect_errno ) { //*Si el numero de error es 0 la conexion es ex
 }
 
 $conexion->set_charset("utf8"); //*Definir el tipo de codificacion
+
+// Establecer lo zona horaria de la conexion
+$conexion->query("SET time_zone = '-6:00'");
+
 /**
  * Obtener Registros
  *

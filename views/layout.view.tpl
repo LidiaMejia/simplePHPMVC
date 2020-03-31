@@ -17,6 +17,12 @@
           <div class="menu">
               <div class="brand"><a href="index.php?page=home">{{page_title}}</a></div>
               <ul>
+                  <!-- Icono carrito de compra. Si se agrega un producto se aumenta el contador y se muestra la cantidad.
+                       Como es la vista publica del menu, si le da clic activa el controlador de carretilla anonima -->
+                {{if cartEntries}}
+                <li><a href="index.php?page=cartanon"><span class="ion-ios-cart"></span> <span id="cartcounter">{{cartEntries}}</span>
+                    </a></li>
+                {{endif cartEntries}}
                   <li><a href="index.php?page=login">Iniciar Sesión</a></li>
                   <li><a href="index.php?page=register">Crear Cuenta</a></li>
               </ul>

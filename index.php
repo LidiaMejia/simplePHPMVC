@@ -27,6 +27,7 @@ if (isset($_GET["page"])) {
 //Siempre
 require_once "controllers/mw/verificar.mw.php";
 require_once "controllers/mw/site.mw.php";
+require_once "controllers/retail/mw/cart.mw.php"; //Contador de Carrito de Compra y Pasar de carretilla anonima a autenticada
 
 // aqui no se toca jajaja la funcion de este index es
 // llamar al controlador adecuado para manejar el
@@ -87,6 +88,22 @@ case "color":
  case "register":
     include_once "controllers/security/register.control.php";
     die();
+
+ /******** ACCIONES DE LA CARRETILLA PARA TODOS *****/
+
+ //*Añadir y remover del carrito son acciones. NO TIENEN VIEW
+ case "addtocart":
+    include_once "controllers/retail/addtocart.control.php";
+ die();
+
+ case "rmvtocart":
+    include_once "controllers/retail/rmvtocart.control.php";
+ die();
+
+ case "cartanon":
+    include_once "controllers/retail/cartanon.control.php";
+ die();
+
 }
 
 //Este switch se encarga de todo el enrutamiento que ocupa login
@@ -184,6 +201,13 @@ case "categoria":
     ($logged)?
         include_once "controllers/mantenimientos/productoimg.control.php":
         mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
+ //*CARRETILLA AUTENTICADA
+ case "cartauth":
+    ($logged) ?
+      include_once "controllers/retail/cartauth.control.php" :
+      mw_redirectToLogin($_SERVER["QUERY_STRING"]);
  die();
 
 }
