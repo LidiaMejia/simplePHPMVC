@@ -4,8 +4,8 @@
  * PHP Version 7
  * Controlador de Controlador
  *
- * @category Controllers_AddToCart
- * @package  Controllers\Controllers_AddToCart
+ * @category Controllers_RmvToCart
+ * @package  Controllers\Controllers_RmvToCart
  * @author   Orlando J Betancourth <orlando.betancourth@gmail.com>
  * @license  Comercial http://
  *

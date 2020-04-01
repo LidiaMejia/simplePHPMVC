@@ -41,13 +41,21 @@
 
         <tfooter>
           <tr style="border-top:1px solid #333;">
-            <td colspan="3" class="right"><strong>Total</strong></td>
+            <!-- Si hay productos en la carretilla que muestre un boton que redirige al controlador para borrarla toda -->
+            <td colspan="2" class="center">
+              {{if totctd}}
+                <a class="btn m-padding bg-red center rmvcart" href="index.php?page=rmvallcart"> <span class="ion-trash-b s4"></span> &nbsp;Cancelar </a>
+              {{endif totctd}}
+            </td>
+            <td class="right"><strong>Total</strong></td>
             <td class="right">{{totctd}}</td>
             <td></td>
             <td class="right">{{total}}</td>
             <td>
-                <!-- Boton para ir al Checkout a pagar -->
-              <a href="checkout" class="btn btn-primary m-padding">Pagar</a>
+                <!-- Boton para ir al Checkout a pagar. SOLO APARECE CUANDO HAY PRODUCTOS EN LA CARRETILLA -->
+                {{if totctd}}
+                  <a href="checkout" class="btn btn-primary m-padding">Pagar</a>
+                {{endif totctd}}
             </td>
           </tr>
         </tfooter>
@@ -57,11 +65,11 @@
 
 </section>
 
-<!-- Cada vez que se da clic a Remover o Añadir una unidad mas a un producto -->
+<!-- Cada vez que se da click a Remover o Añadir una unidad mas a un producto o a remover todo el carrito -->
 <script>
   $().ready(function () 
   {
-    $(".mdftocart").click(function (e) 
+    $(".mdftocart, .rmvcart").click(function (e)
     {
       e.preventDefault();
       e.stopPropagation();

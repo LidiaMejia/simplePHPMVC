@@ -16,7 +16,7 @@
         <!-- Mostrando codigo interno y descripcion del producto -->
         <span class="col-12 center depth-1 m-padding card-desc">
           <span class="card-side">{{skuprd}}</span> 
-          <span class="col-sm-12">{{dscprd}}</span> 
+          <span class="col-12">{{dscprd}}</span> 
         </span>
 
         <!-- Mostrando cantidad disponible del producto  -->

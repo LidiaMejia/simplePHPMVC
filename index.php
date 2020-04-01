@@ -9,7 +9,7 @@
  * @author   Luis Fernando Gomez Figueroa <lgomezf16@gmail.com>
  * @license  Comercial http://
  *
- * @version 1.0.0
+ * @version CVS: 1.0.0
  *
  * @link http://url.com
  */
@@ -89,7 +89,7 @@ case "color":
     include_once "controllers/security/register.control.php";
     die();
 
- /******** ACCIONES DE LA CARRETILLA PARA TODOS *****/
+ /********** ACCIONES DE LA CARRETILLA PARA TODOS **********/
 
  //*Añadir y remover del carrito son acciones. NO TIENEN VIEW
  case "addtocart":
@@ -102,6 +102,10 @@ case "color":
 
  case "cartanon":
     include_once "controllers/retail/cartanon.control.php";
+ die();
+
+ case "rmvallcart":
+    include_once "controllers/retail/rmvallcart.control.php";
  die();
 
 }

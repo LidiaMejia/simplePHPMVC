@@ -28,6 +28,7 @@
 function getAuthTimeDelta()
 {
     return 21600; // 6 * 60 * 60; // horas * minutos * segundo
+    // No puede ser mayor a 34 días
 }
 
 /**
@@ -38,6 +39,7 @@ function getAuthTimeDelta()
 function getUnAuthTimeDelta()
 {
     return 600; // 10 * 60; //h , m, s
+    // No puede ser mayor a 34 días
 }
 
 
@@ -674,6 +676,75 @@ function getAuthCartDetail($usuario)
     $arrProductosFinal["total"] = number_format($arrProductosFinal["total"], 2);
 
     return $arrProductosFinal;
+}
+
+
+
+/**
+ * Borra la carretilla completa autenticada
+ *
+ * @param Integer $usuario Código de Usuario
+ *
+ * @return integer Registro Afectados
+ */
+
+ function deleteCartAuth($usuario)
+ {
+     $sqlDelete = "DELETE FROM carretilla WHERE usercod = %d;";
+
+     return ejecutarNonQuery(
+        sprintf($sqlDelete, $usuario)
+     );
+ }
+
+
+ /**
+ * Borra la carretilla completa no autenticada
+ *
+ * @param string $uniqueUser Usuario Anónimo
+ *
+ * @return integer Registros Afectados
+ */
+
+ function deleteCartUnAuth($uniqueUser)
+ {
+     $sqlDelete = "DELETE FROM carretillaanon WHERE usercod = %d;";
+
+     return ejecutarNonQuery(
+        sprintf($sqlDelete, $uniqueUser)
+     );
+ }
+
+
+ /**
+ * Elimina los productos reservados fuera de tiempo en ambas carretillas
+ * Y se devuelve la cantidad total eliminada
+ *
+ * @return void
+ */
+function cleanTimeOutCart()
+{
+    $contador = 0;
+
+    iniciarTransaccion(); //Como un Procedimiento Almacenado
+
+    //Borrando Carretilla Anonima
+    $sqlDel = "DELETE FROM carretillaanon WHERE TIME_TO_SEC(TIMEDIFF(now(), crrfching)) > %d";
+
+    $contador += ejecutarNonQuery(
+        sprintf($sqlDel, getUnAuthTimeDelta())
+    );
+    
+    // Borrando Carretilla Autenticada
+    $sqlDel = "DELETE FROM carretilla WHERE TIME_TO_SEC(TIMEDIFF(now(), crrfching)) > %d";
+
+    $contador += ejecutarNonQuery(
+        sprintf($sqlDel, getAuthTimeDelta())
+    );
+
+    terminarTransaccion();
+
+    return $contador;
 }
 
 ?>
