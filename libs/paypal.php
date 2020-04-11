@@ -14,8 +14,8 @@ require_once "vendor/autoload.php";
  {
      $apiContext = new \PayPal\Rest\ApiContext(
          new \PayPal\Auth\OAuthTokenCredential(
-             'AYYSSUYc5-6Lv7rPa1Vk-5pJoj7bQF7i2XcSX0-9CooUZdeVqZ2jgbWuwBGFFbZ8HhInXP3hTEFJR7EM',
-             'EJv9qYD9bgxCswKcyTGFMbY_5WYLbFPZB9eZAAEHaGCoc1yVe1nh6GeyXCW5d2R4McAFb8I8aYjujOm-'
+             'AYYSSUYc5-6Lv7rPa1Vk-5pJoj7bQF7i2XcSX0-9CooUZdeVqZ2jgbWuwBGFFbZ8HhInXP3hTEFJR7EM', //ClientID
+             'EJv9qYD9bgxCswKcyTGFMbY_5WYLbFPZB9eZAAEHaGCoc1yVe1nh6GeyXCW5d2R4McAFb8I8aYjujOm-'  //ClientSecret
          )
      ); 
 

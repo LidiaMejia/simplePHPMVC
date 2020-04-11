@@ -83,7 +83,7 @@ Funciones
          //Si no hay imagen, se coloca la de "No hay imagen disponible"
          if(preg_match('/^\s*$/', $producto["urlthbprd"]))
          {
-             $assocProducto[$producto['codprd']['urlthbprd']] = "public/imgs/noprodthb.phg";
+             $assocProducto[$producto['codprd']['urlthbprd']] = "public/imgs/noprodthb.png";
          }
      }
 
@@ -178,7 +178,7 @@ function getOneProductoCatalogo($codprd)
          //Si no hay imagen, se coloca la de "No hay imagen disponible"
          if(preg_match('/^\s*$/', $producto["urlthbprd"]))
          {
-             $assocProducto[$producto['codprd']['urlthbprd']] = "public/imgs/noprodthb.phg";
+             $assocProducto[$producto['codprd']['urlthbprd']] = "public/imgs/noprodthb.png";
          }
      }
 
@@ -593,7 +593,8 @@ function passAnonCartToCart($uniqueUser, $user)
         sprintf($sqldel, $uniqueUser)
     );
 
-    terminarTransaccion();
+    terminarTransaccion(); //COMMIT END
+    //terminarTransaccion(false); //ROLLBACK END
 
     //Se retorna cantidad de productos que hay en la carretilla
     return getCartProducts($user);
@@ -708,7 +709,7 @@ function getAuthCartDetail($usuario)
 
  function deleteCartUnAuth($uniqueUser)
  {
-     $sqlDelete = "DELETE FROM carretillaanon WHERE usercod = %d;";
+     $sqlDelete = "DELETE FROM carretillaanon WHERE anoncod = %d;";
 
      return ejecutarNonQuery(
         sprintf($sqlDelete, $uniqueUser)
