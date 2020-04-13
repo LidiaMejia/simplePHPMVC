@@ -214,6 +214,25 @@ case "categoria":
       mw_redirectToLogin($_SERVER["QUERY_STRING"]);
  die();
 
+ //*CHECKOUT (VA A PAGAR)
+ case "checkout":
+    ($logged)?
+        include_once "controllers/retail/paypal/checkout.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die();
+
+ case "checkoutappr":
+    ($logged)?
+        include_once "controllers/retail/paypal/checkoutapproved.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+ die(); 
+
+  case "checkoutcancel":
+    ($logged)?
+        include_once "controllers/retail/paypal/checkoutcancel.control.php":
+        mw_redirectToLogin($_SERVER["QUERY_STRING"]);
+  die(); 
+
 }
 
 addToContext("pageRequest", $pageRequest);

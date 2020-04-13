@@ -74,7 +74,7 @@ function estaAutorizado($usercod, $assetcod){
     where a.fnrolest = 'ACT' and b.usercod=%d and a.fncod='%s' limit 1;";
     $data = array();
     $data = obtenerUnRegistro(sprintf($sqlstr,$usercod,$assetcod));
-    if(count($data) > 0){
+    if(is_array($data) && count($data) > 0){
         return true;
     }
     return false;

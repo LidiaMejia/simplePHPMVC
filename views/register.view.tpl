@@ -38,7 +38,6 @@
 
         <fieldset class="row right">
             <button id="btnNuevaCuenta">Nueva Cuenta</button> &nbsp;
-            <button>Iniciar Sesión</button>
         </fieldset>
     </form>
 </main>

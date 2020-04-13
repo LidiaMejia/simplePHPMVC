@@ -31,6 +31,8 @@ require_once "models/mantenimientos/productos.model.php";
     $cartEntries = 0;
     $cartAnonUniqueID = '';
 
+    $cont = cleanTimeOutCart();
+
     //Si existe el Unique user anonimo en la sesion, lo guardo
     if(isset($_SESSION["cart_anon_uid"]))
     {
@@ -41,7 +43,7 @@ require_once "models/mantenimientos/productos.model.php";
     if(mw_estaLogueado())
     {
         //Guardar usuario
-        $usuario = $_SESSION["userLogged"];
+        $usuario = $_SESSION["userCode"]; 
 
         // Si existe un $carNonUniqueID signigica que lleno una carretilla anonima
         //    Se obtiene la cantidad de productos que hay en la carretilla anonima

@@ -1,7 +1,7 @@
 <section>
 
   <header>
-      <h1><span class="ion-ios-cart s2"></span>&nbsp; Mi Carretilla de Compra</h1>
+      <h1><span class="ion-card s2"></span>&nbsp; Pago con Paypal</h1>
   </header>
 
   <br/>
@@ -52,10 +52,12 @@
             <td></td>
             <td class="right">{{total}}</td>
             <td>
-                <!-- Boton para ir al Checkout a pagar. SOLO APARECE CUANDO HAY PRODUCTOS EN LA CARRETILLA -->
+                <!-- Form con boton para Realizar el Pago con Paypal. SOLO APARECE CUANDO HAY PRODUCTOS EN LA CARRETILLA -->
                 {{if totctd}}
-                  <a href="index.php?page=checkout" class="btn btn-primary m-padding">Pagar</a>
-                {{endif totctd}}
+                <form action="index.php?page=checkout" method="post">
+                  <button type="submit" name="btnSubmit" class="btn btn-primary m-padding">Pagar con Paypal</button>
+                </form>
+                {{endif totctd}} 
             </td>
           </tr>
         </tfooter>

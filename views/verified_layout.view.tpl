@@ -26,6 +26,7 @@
                     {{endfor appmenu}}
                     <!-- Icono carrito de compra. Si se agrega un producto se aumenta el contador y se muestra la cantidad.
                          Como es la vista privada del menu, si le da clic activa el controlador de carretilla autenticada -->
+                    <!-- <li><a><span>{{cartEntries}}</span></a></li> -->
                     {{if cartEntries}}
                         <li><a href="index.php?page=cartauth"><span class="ion-ios-cart"></span> <span id="cartcounter">{{cartEntries}}</span></a></li>
                     {{endif cartEntries}}

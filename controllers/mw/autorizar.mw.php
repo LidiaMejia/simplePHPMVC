@@ -29,7 +29,7 @@ function generarMenu($usercod)
 function isAuthorized($assetCode, $usercod)
 {
     $programa = obtenerFuncionPorCodigo($assetCode);
-    if (count($programa) == 0) {
+    if (is_array($programa) && count($programa) == 0) {
         insertFuncion($assetCode, $assetCode, 'ACT', 'PRG');
     }
     if ($_SESSION["userType"] == 'ADM') {
